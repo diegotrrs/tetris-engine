@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+import sys
+
+from core.TetrisEngine import TetrisEngine
+from collections import deque
+
+def main():
+    tetris_engine = TetrisEngine()
+    for line in sys.stdin:
+        # If line is not commented
+        if line[0] != '#':
+            result = tetris_engine.process_line(line.strip())
+            sys.stdout.write(str(result) + "\n")
+
+# def main():
+#     board_width = 10  # or whatever width you want
+#     board = deque([['-' for _ in range(board_width)]])
+    
+
+#     tetrimino = [
+#         ['T', 'T', 'T'],
+#         ['-', 'T', '-']
+#     ]
+
+#     for row in (tetrimino):
+#         board.appendleft(row)
+
+#     tetrimino = [
+#         ['X', 'X'],
+#         ['X', 'X']
+#     ]
+
+#     for row in (tetrimino):
+#         board.appendleft(row)
+
+
+
+#     for row in board:
+#         print(' '.join(row))
+
+if __name__ == "__main__":
+    main()
