@@ -70,5 +70,5 @@ However, if you are seeking something simpler and don't want to deal with the ov
 https://codereview.stackexchange.com/questions/245876/determine-the-height-of-a-tetris-games-board-after-a-sequence-of-moves
 
 ```
-black .
+black ./core
 ```
