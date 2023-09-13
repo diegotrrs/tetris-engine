@@ -21,7 +21,7 @@ class TetrisEngine:
             q_block = TetrisBlock(block_id=BlockId.Q, matrix=[[_1, _1], [_1, _1]])
 
             x_block = TetrisBlock(
-                block_id=BlockId.Z,
+                block_id=BlockId.X,
                 matrix=[
                     [_0, _1],
                     [_1, _1],
@@ -81,28 +81,37 @@ class TetrisEngine:
             )
 
             # Add the blocks to the engine's blocks list
-            self.blockTypes += [x_block, q_block, z_block, s_block, t_block, i_block, l_block, j_block]
-            
+            self.blockTypes += [
+                x_block,
+                q_block,
+                z_block,
+                s_block,
+                t_block,
+                i_block,
+                l_block,
+                j_block,
+            ]
 
-    def __find_block_type(self, block_id: str) -> Optional[TetrisBlock]:        
+    def __find_block_type(self, block_id: str) -> Optional[TetrisBlock]:
         for block_type in self.blockTypes:
             if block_type.block_id.value == block_id:
                 return block_type
 
     def process_line(self, line: str) -> int:
-        print(f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        print(f'Processing line {line}')
-        print(f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        # print(f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        # print(f'Processing line {line}')
+        # print(f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         tetris_board = TetrisBoard(width=self.board_width)
         items = line.split(",")
 
         for item in items:
+            print(f"Processing item {item}")
             block_type = item[0]  # Assumption: Block ids are one character only
             column_index = int(item[1:])  # Assumption: Positions are valid numbers
 
             block = self.__find_block_type(block_type)
             if block:
                 tetris_board.drop_block_at_column(block, column_index)
-        #print(tetris_board)
-        #return tetris_board.get_board_height()        
-        return 2
+            print("\n\n")
+        # print(tetris_board)
+        # return tetris_board.get_board_height()
