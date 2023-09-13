@@ -39,6 +39,12 @@ python tetris.py < ../input.txt > ../output.txt
 pip freeze > requirements.txt
 ```
 
+Run all tests
+```
+python -m unittest discover -s core/tests
+```
+
+
 Install all
 ```
 pip install -r requirements.txt 

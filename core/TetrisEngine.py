@@ -6,11 +6,6 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 
-# Alias TetrisBlock's EMPTY_SPACE and NON_EMPTY_SPACE for reability reasons on this file.
-_0 = TetrisBlock.EMPTY_SPACE
-_1 = TetrisBlock.NON_EMPTY_SPACE
-
-
 @dataclass
 class TetrisEngine:
     blockTypes: List[TetrisBlock] = field(default_factory=list)
@@ -18,65 +13,65 @@ class TetrisEngine:
 
     def __post_init__(self):
         if not self.blockTypes:  # If blocks list is empty, populate with default blocks
-            q_block = TetrisBlock(block_id=BlockId.Q, matrix=[[_1, _1], [_1, _1]])
+            q_block = TetrisBlock(block_id=BlockId.Q, matrix=[[1, 1], [1, 1]])
 
             x_block = TetrisBlock(
                 block_id=BlockId.X,
                 matrix=[
-                    [_0, _1],
-                    [_1, _1],
-                    [_1, _0],
+                    [0, 1],
+                    [1, 1],
+                    [1, 0],
                 ],
             )
 
             z_block = TetrisBlock(
                 block_id=BlockId.Z,
                 matrix=[
-                    [_1, _1, _0],
-                    [_0, _1, _1],
+                    [1, 1, 0],
+                    [0, 1, 1],
                 ],
             )
 
             s_block = TetrisBlock(
                 block_id=BlockId.S,
                 matrix=[
-                    [_0, _1, _1],
-                    [_1, _1, _0],
+                    [0, 1, 1],
+                    [1, 1, 0],
                 ],
             )
 
             t_block = TetrisBlock(
                 block_id=BlockId.T,
                 matrix=[
-                    [_1, _1, _1],
-                    [_0, _1, _0],
+                    [1, 1, 1],
+                    [0, 1, 0],
                 ],
             )
 
             i_block = TetrisBlock(
                 block_id=BlockId.I,
                 matrix=[
-                    [_1, _1, _1, _1],
+                    [1, 1, 1, 1],
                 ],
             )
 
             l_block = TetrisBlock(
                 block_id=BlockId.L,
                 matrix=[
-                    [_1, _0],
-                    [_1, _0],
-                    [_1, _0],
-                    [_1, _1],
+                    [1, 0],
+                    [1, 0],
+                    [1, 0],
+                    [1, 1],
                 ],
             )
 
             j_block = TetrisBlock(
                 block_id=BlockId.J,
                 matrix=[
-                    [_0, _1],
-                    [_0, _1],
-                    [_0, _1],
-                    [_1, _1],
+                    [0, 1],
+                    [0, 1],
+                    [0, 1],
+                    [1, 1],
                 ],
             )
 

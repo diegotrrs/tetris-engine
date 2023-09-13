@@ -7,7 +7,7 @@ from core.TetrisBlock import TetrisBlock
 
 @dataclass
 class TetrisBoard:
-    CHARACTER_FOR_EMPTY_CELL = "0"
+    CHARACTER_FOR_EMPTY_CELL = 0
     width: int
     """
      The reason we use default_factory for mutable objects, like lists, is to prevent unexpected behavior due to shared references. For instance, if you were to set data=[] directly as the default value, every instance of the dataclass would share the same list, which is rarely what you want. Using default_factory=list ensures each instance gets its own unique list.
@@ -93,6 +93,9 @@ class TetrisBoard:
 
     def check_for_filled_rows(self):
         return
+    
+    def get_sub_matrix_from_board(board: Deque, x: int, y: int):
+         self.board[1]
 
     def __str__(self):
         # for row_idx, row in enumerate(self.board):

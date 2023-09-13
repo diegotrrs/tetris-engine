@@ -17,9 +17,6 @@ class BlockId(Enum):
 
 @dataclass
 class TetrisBlock:
-    EMPTY_SPACE = "0"
-    NON_EMPTY_SPACE = "1"
-
     block_id: BlockId
     matrix: List[List[str]]
 
@@ -48,7 +45,7 @@ class TetrisBlock:
         """Count consecutive NON_EMPTY_SPACE cells from the bottom to the top for a specific column."""
         count = 0
         for row in reversed(self.matrix):
-            if row[column_index] == TetrisBlock.NON_EMPTY_SPACE:
+            if row[column_index] == 0:
                 count += 1
             else:
                 break  # stop counting when an EMPTY_SPACE is encountered
@@ -60,7 +57,7 @@ class TetrisBlock:
             for cell in row:
                 if (
                     cell != TetrisBlock.EMPTY_SPACE
-                    and cell != TetrisBlock.NON_EMPTY_SPACE
+                    and cell != 0
                 ):
                     raise ValueError(
                         f"Invalid value {cell} in matrix for block {self.block_id}"
