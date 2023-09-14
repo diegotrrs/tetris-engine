@@ -1,9 +1,11 @@
 import unittest
 
 import numpy as np
-from core.util import (
-    drop_block_at_board,
-)
+from core import tetris_block
+from core.tetris_block_factory import TetrisBlockFactory
+from core.tetris_board import TetrisBoard
+
+
 # fmt: off
 ''' 
 Include tests for drop_block_at_board when it does not result in new top rows added.
@@ -22,19 +24,18 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
             ]
         )
 
-        t_block = np.array(
-            [
-                [ 1, 1, 1 ],
-                [ 0, 1, 0 ],                             
-            ]
-        )
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_z_on_it
+
+        t_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.T)
 
         column_to_be_dropped_at = 0
 
-        result = drop_block_at_board(board_with_z_on_it, t_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(t_block, column_to_be_dropped_at)
+        
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [
                         [ 1, 1, 1, 0 ],
@@ -44,6 +45,11 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            4
         )
 
     def test_drop_block_at_board_at_column_1(
@@ -58,19 +64,17 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
             ]
         )
 
-        t_block = np.array(
-            [
-                [ 1, 1, 1 ],
-                [ 0, 1, 0 ],                             
-            ]
-        )
+        t_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.T)
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_z_on_it
 
         column_to_be_dropped_at = 1
 
-        result = drop_block_at_board(board_with_z_on_it, t_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(t_block, column_to_be_dropped_at)
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [
                         [ 0, 0, 0, 0 ],
@@ -80,6 +84,11 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            4
         )
 
     def test_drop_block_at_board_at_column_2(
@@ -94,19 +103,17 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
             ]
         )
 
-        t_block = np.array(
-            [
-                [ 1, 1, 1 ],
-                [ 0, 1, 0 ],                             
-            ]
-        )
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_z_on_it
+
+        t_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.T)
 
         column_to_be_dropped_at = 2
 
-        result = drop_block_at_board(board_with_z_on_it, t_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(t_block, column_to_be_dropped_at)
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [
                         [ 0, 0, 0, 0 ],
@@ -116,6 +123,11 @@ class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            4
         )
 
     
@@ -136,20 +148,18 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
             ]
         )
 
-        t_block = np.array(
-            [
-                [ 1, 1, 1 ],
-                [ 0, 1, 0 ],
-            ]
-        )
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_l_on_it
+
+        t_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.T)
 
         column_to_be_dropped_at = 0
 
-        result = drop_block_at_board(board_with_l_on_it, t_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(t_block, column_to_be_dropped_at)
 
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [   
                         [ 1, 1, 1, 0 ],                     
@@ -160,6 +170,11 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            5
         )
 
     def test_drop_block_at_board_resulting_in_2_rows_added(
@@ -174,21 +189,18 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
             ]
         )
 
-        l_block = np.array(
-            [
-                [ 1, 0 ],
-                [ 1, 0 ],
-                [ 1, 0 ],
-                [ 1, 1 ],                             
-            ]
-        )
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_z_on_it
+
+        l_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.L)
 
         column_to_be_dropped_at = 1
 
-        result = drop_block_at_board(board_with_z_on_it, l_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(l_block, column_to_be_dropped_at)
+
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [                        
                         [ 0, 1, 0, 0 ],
@@ -200,6 +212,11 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            6
         )
 
     def test_drop_block_at_board_resulting_in_4_row_added(
@@ -214,22 +231,18 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
             ]
         )
 
-        l_block = np.array(
-            [
-                [ 1, 0 ],
-                [ 1, 0 ],
-                [ 1, 0 ],
-                [ 1, 1 ],
-            ]
-        )
+        tetris_board = TetrisBoard()
+        tetris_board.board = board_with_l_on_it
+
+        l_block = TetrisBlockFactory.create_tetris_block(tetris_block.BlockId.L)
 
         column_to_be_dropped_at = 0
 
-        result = drop_block_at_board(board_with_l_on_it, l_block, column_to_be_dropped_at)
+        height = tetris_board.drop_block_at_column(l_block, column_to_be_dropped_at)
 
         self.assertTrue(
             np.array_equal(
-                result,
+                tetris_board.board,
                 np.array(
                     [   
                         [ 1, 0, 0, 0 ],
@@ -243,6 +256,11 @@ class TestDropBlockAtBoardTopRowsAreAdded(unittest.TestCase):
                     ]
                 ),
             )
+        )
+
+        self.assertEqual(
+            height,
+            8
         )
     
 

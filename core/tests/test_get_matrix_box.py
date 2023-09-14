@@ -1,9 +1,8 @@
 import unittest
 
 import numpy as np
-from core.util import (
-    get_matrix_box,
-)
+from core.tetris_board import TetrisBoard
+
 # fmt: off
 class TestGetMatrixBox(unittest.TestCase):
     def test_get_matrix_box_inside_ranges(
@@ -17,16 +16,19 @@ class TestGetMatrixBox(unittest.TestCase):
                 [ 13 ,14, 15, 16 ],
             ]
         )
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
         start_row = 0
         start_col = 0
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(
@@ -57,12 +59,15 @@ class TestGetMatrixBox(unittest.TestCase):
         start_col = 0
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(
@@ -93,12 +98,15 @@ class TestGetMatrixBox(unittest.TestCase):
         start_col = 0
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(
@@ -129,12 +137,15 @@ class TestGetMatrixBox(unittest.TestCase):
         start_col = -1
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(
@@ -165,12 +176,15 @@ class TestGetMatrixBox(unittest.TestCase):
         start_col = 3
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(
@@ -201,12 +215,15 @@ class TestGetMatrixBox(unittest.TestCase):
         start_col = -2
         rows = 2
         cols = 2
-        result_matrix = get_matrix_box(
-            matrix,
-            cols,
-            rows,
+
+        tetris_board = TetrisBoard()
+        tetris_board.board = matrix
+
+        result_matrix = tetris_board.get_board_box(
             start_row,
             start_col,
+            cols,
+            rows,            
         )
 
         expected_result = np.array(

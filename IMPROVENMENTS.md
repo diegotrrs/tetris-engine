@@ -16,3 +16,9 @@
         print(result_matrix)
 
         expected_result = np.array([[0, 0], [0, 0]])    
+
+
+
+que tetris board reciba matrix por defecto
+ tetris_board = TetrisBoard()
+        tetris_board.board = matrix       
