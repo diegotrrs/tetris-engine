@@ -4,7 +4,9 @@ import numpy as np
 from core.tetris_board import TetrisBoard
 
 # fmt: off
+# Include tests cases to test the remove filled rows method of Tetris Board.
 class TestRemoveFilledRows(unittest.TestCase):
+        
     def test_remove_filled_rows_no_rows_actually_filled(
         self,
     ):

@@ -1,7 +1,9 @@
 from core.tetris_block import BlockId, TetrisBlock
 import numpy as np
 
-class TetrisBlockFactory:
+
+class TetrisBlockFactory:    
+    # Factory that takes care of the creation of TetrisBlocks        
     @staticmethod
     def create_tetris_block(blockId: BlockId) -> TetrisBlock:
         blocks = {

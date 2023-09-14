@@ -4,6 +4,8 @@ import numpy as np
 from core.tetris_board import TetrisBoard
 
 # fmt: off
+
+# Include tests for the get_board_box method used to get sub-areas of the matrix. This method could be private to TetrisBoard but it's worth testing it.
 class TestGetMatrixBox(unittest.TestCase):
     def test_get_matrix_box_inside_ranges(
         self,
