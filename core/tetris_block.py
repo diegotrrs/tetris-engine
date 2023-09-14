@@ -20,7 +20,9 @@ class BlockId(Enum):
     I = "I"
     L = "L"
     J = "J"
+    ## X and Y Added for testing purposes
     X = "X"
+    Y = "Y"
 
 
 @dataclass

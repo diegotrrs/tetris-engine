@@ -10,7 +10,7 @@ from core.tetris_board import TetrisBoard
 
 # Include tests for drop_block_at_board when it does not result in new top rows added.
 class TestDropBlockAtBoardNoTopRowsAdded(unittest.TestCase):
-
+    
     def test_drop_block_at_board_at_column_0(
         self,
     ):

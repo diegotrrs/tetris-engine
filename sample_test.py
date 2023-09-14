@@ -31,9 +31,7 @@ def run_test(test_case: TestCase):
 
     output = [int(line) for line in p.stdout.splitlines()]
 
-    assert output == [
-        test_case.sample_output
-    ], f"The test with name `{test_case.name}` failed."
+    assert output == [test_case.sample_output], f"The test with name `{test_case.name}` failed."
 
 
 # Execute this script with `python3 starter_tests.py`

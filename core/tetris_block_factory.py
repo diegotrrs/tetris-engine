@@ -16,6 +16,7 @@ class TetrisBlockFactory:
                     ]
                 ),
             ),
+            # Not included in requirements, added for testing purposes
             BlockId.X: TetrisBlock(
                 block_id=BlockId.X,
                 matrix=np.array(
@@ -23,6 +24,18 @@ class TetrisBlockFactory:
                         [0, 1],
                         [1, 1],
                         [1, 0],
+                    ]
+                ),
+            ),
+            # Not included in requirements, added for testing purposes
+            BlockId.Y: TetrisBlock(
+                block_id=BlockId.X,
+                matrix=np.array(
+                    [
+                        [1],
+                        [1],
+                        [1],
+                        [1],
                     ]
                 ),
             ),

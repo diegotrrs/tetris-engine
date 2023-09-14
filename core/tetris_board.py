@@ -124,8 +124,8 @@ class TetrisBoard:
         if self.board is None:
             self.board = np.zeros((block.height, self.default_board_width))
 
-        # Cap the col taking into account the width of the block and the board.
-        colIdx = block.width - colIdx if colIdx + block.width > self.width else colIdx
+        # Change col if a high col is passed for the width of the block and board.
+        colIdx = colIdx if colIdx + block.width - 1 <= self.width - 1 else self.width - block.width
 
         # Represents the potential row (x dimension) where the block might be.
         # It starts with an initial value of matrix_height - block.height
