@@ -11,7 +11,8 @@ from tabulate import (
     tabulate,
 )
 
-class BlockId(Enum):    
+
+class BlockId(Enum):
     Q = "Q"
     Z = "Z"
     S = "S"
@@ -21,8 +22,9 @@ class BlockId(Enum):
     J = "J"
     X = "X"
 
+
 @dataclass
-class TetrisBlock:   
+class TetrisBlock:
     block_id: BlockId
     matrix: ndarray
 

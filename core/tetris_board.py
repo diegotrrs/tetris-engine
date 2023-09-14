@@ -18,20 +18,22 @@ from core.tetris_block_factory import TetrisBlockFactory
 from numpy import ndarray
 import numpy as np
 
+
 @dataclass
 class TetrisBoard:
-    board: ndarray = None # The actual matrix of 1 or 0
-    blockTypes: List[TetrisBlock] = field(default_factory=list) # The different types of blocks
+    board: ndarray = None  # The actual matrix of 1 or 0
+    blockTypes: List[TetrisBlock] = field(default_factory=list)  # The different types of blocks
     default_board_width: int = 10
 
     def __post_init__(
         self,
     ):
         """Initialises the blocks."""
-        # fmt: off
         if not self.blockTypes:  # If blocks list is empty, populate with default blocks
             q_block = TetrisBlockFactory.create_tetris_block(BlockId.Q)
-            x_block = TetrisBlockFactory.create_tetris_block(BlockId.X) # This one wasn't included in the requirements, it was added to testing purposes, it can be used in the input file.
+            x_block = TetrisBlockFactory.create_tetris_block(
+                BlockId.X
+            )  # This one wasn't included in the requirements, it was added to testing purposes, it can be used in the input file.
             z_block = TetrisBlockFactory.create_tetris_block(BlockId.Z)
             s_block = TetrisBlockFactory.create_tetris_block(BlockId.S)
             t_block = TetrisBlockFactory.create_tetris_block(BlockId.T)
@@ -49,8 +51,7 @@ class TetrisBoard:
                 l_block,
                 j_block,
             ]
-            # fmt: on
-        
+
     def find_block_type(
         self,
         block_id: str,
@@ -75,9 +76,8 @@ class TetrisBoard:
     def width(self):
         return self.board.shape[1]
 
-
     def get_board_box(self, start_row: int, start_col: int, cols: int, rows: int) -> ndarray:
-        """Return a box or sub-area of the board's matrix. 
+        """Return a box or sub-area of the board's matrix.
 
         Args:
             start_row (int): The x coordinate
@@ -88,7 +88,7 @@ class TetrisBoard:
         Returns:
             ndarray: A matrix representing a smaller area of the board.
         """
-        
+
         # Create an initial box filled with zeros
         matrix_box = np.zeros((rows, cols), dtype=int)
 
@@ -109,7 +109,7 @@ class TetrisBoard:
         # Copy over valid values from the original matrix to the matrix_box
         matrix_box[matrix_box_row_start:matrix_box_row_end, matrix_box_col_start:matrix_box_col_end] = self.board[start_row:row_end, start_col:col_end]
         return matrix_box
-    
+
     def drop_block_at_column(self, block: TetrisBlock, colIdx: int) -> int:
         """Drops a block at the specified column. Increases if board's height if necessary. It also removes the filled rows after the block has been positioned
 
@@ -127,7 +127,7 @@ class TetrisBoard:
         # Cap the col taking into account the width of the block and the board.
         colIdx = block.width - colIdx if colIdx + block.width > self.width else colIdx
 
-        # Represents the potential row (x dimension) where the block might be.        
+        # Represents the potential row (x dimension) where the block might be.
         # It starts with an initial value of matrix_height - block.height
         potential_row = self.height - block.height
 
@@ -156,7 +156,7 @@ class TetrisBoard:
         if number_of_rows_to_insert > 0:
             zeros = np.zeros((number_of_rows_to_insert, self.width))
             self.board = np.insert(self.board, 0, zeros, axis=0)
-        
+
         x = potential_row if potential_row > 0 else 0
         y = colIdx
 
