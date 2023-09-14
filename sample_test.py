@@ -23,12 +23,13 @@ class TestCase:
 
 
 def run_test(test_case: TestCase):
+    print(test_case.sample_input)
     p = subprocess.run(
         ["/bin/bash", ENTRY_POINT],
         input=test_case.sample_input,
         capture_output=True,
     )
-
+    
     output = [int(line) for line in p.stdout.splitlines()]
 
     assert output == [test_case.sample_output], f"The test with name `{test_case.name}` failed."
